@@ -24,10 +24,10 @@ app.use((req, res, next) => {
 app.use(isAuth);
 
 app.use('/graphql', graphqlHttp({
-        schema: graphqlSchema,
-        rootValue: graphqlResolvers,
-        graphiql: true
-    })
+    schema: graphqlSchema,
+    rootValue: graphqlResolvers,
+    graphiql: true
+})
 );
 
 mongoose.connect(

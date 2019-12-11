@@ -4,21 +4,21 @@ import './Auth.css';
 import AuthContext from '../context/auth-context';
 
 class AuthPage extends Component {
-    state ={
+    state = {
         isLogin: true
     }
 
     static contextType = AuthContext;
-    
+
     constructor(props) {
         super(props);
         this.emailEl = React.createRef();
         this.passwordEl = React.createRef();
     }
-    
+
     switchModeHandler = () => {
         this.setState(prevState => {
-            return {isLogin: !prevState.isLogin};
+            return { isLogin: !prevState.isLogin };
         })
     }
 
@@ -68,18 +68,18 @@ class AuthPage extends Component {
             }
             return res.json();
         })
-        .then(resData => {
-            if (resData.data.login.token) {
-                this.context.login(
-                    resData.data.login.token,
-                    resData.data.login.userId,
-                    resData.data.login.tokenExpiration
-                );
-            }
-        })
-        .catch(err => {
-            console.log(err)
-        });
+            .then(resData => {
+                if (resData.data.login.token) {
+                    this.context.login(
+                        resData.data.login.token,
+                        resData.data.login.userId,
+                        resData.data.login.tokenExpiration
+                    );
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            });
     };
 
     render() {
@@ -90,14 +90,14 @@ class AuthPage extends Component {
             </div>
             <div className="form-control">
                 <label htmlFor="password">Password</label>
-                <input type="password" id="password" ref={this.passwordEl}/>
+                <input type="password" id="password" ref={this.passwordEl} />
             </div>
             <div className="form-actions">
                 <button type="submit">Submit</button>
                 <button type="button" onClick={this.switchModeHandler}>
                     Switch to {this.state.isLogin ? 'Signup' : 'Login'}
                 </button>
-                
+
             </div>
         </form>;
     }
